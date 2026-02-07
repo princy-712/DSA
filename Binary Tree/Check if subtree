@@ -1,0 +1,39 @@
+/*complete the given function*/
+
+/* class Node{
+    int data;
+    Node left,right;
+    Node(int d)
+    {
+        data=d;
+        left=null;
+        right=null;
+    }
+}*/
+class Solution {
+    
+    public static boolean isSubtree(Node T, Node S) {
+        // Base cases
+        if (S == null) return true;   // empty tree is subtree
+        if (T == null) return false;  // big tree empty, small not empty
+
+        // If current nodes match, check full structure
+        if (isIdentical(T, S)) {
+            return true;
+        }
+
+        // Otherwise check left and right subtrees
+        return isSubtree(T.left, S) || isSubtree(T.right, S);
+    }
+
+    // Helper function to check identical trees
+    static boolean isIdentical(Node r1, Node r2) {
+        if (r1 == null || r2 == null) {
+            return r1 == r2;
+        }
+
+        return (r1.data == r2.data) &&
+               isIdentical(r1.left, r2.left) &&
+               isIdentical(r1.right, r2.right);
+    }
+}
