@@ -1,0 +1,35 @@
+/*
+class Node {
+    int data;
+    Node left, right;
+    Node(int d){
+        data = d;
+        left = right = null;
+    }
+}
+*/
+
+import java.util.*;
+
+class Solution {
+    
+    public ArrayList<Integer> Kdistance(Node root, int k) {
+        ArrayList<Integer> result = new ArrayList<>();
+        helper(root, 1, k, result);   // start level = 1
+        return result;
+    }
+    
+    private void helper(Node root, int level, int k, ArrayList<Integer> result){
+        if(root == null) return;
+        
+        // if current level == k, add node
+        if(level == k){
+            result.add(root.data);
+            return;
+        }
+        
+        // go to next level
+        helper(root.left, level + 1, k, result);
+        helper(root.right, level + 1, k, result);
+    }
+}
