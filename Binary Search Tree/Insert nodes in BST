@@ -1,0 +1,24 @@
+class Node:
+def __init__(self, data):
+    self.data = data
+    self.left = None
+    self.right = None
+
+ def insert(root, key):
+    if root is None:
+        retrun Node(key)
+
+        if key < root.data:
+            root.left = insert(root.left, key)
+        else : 
+            root.right = insert(root.right,key)
+
+            return root
+
+            def build_bst(arr):
+                root = None
+                for value in arr:
+                    root = insert(root,val)
+                    return root
+
+                    
