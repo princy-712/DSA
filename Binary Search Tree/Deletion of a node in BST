@@ -1,0 +1,42 @@
+'''
+class Node:
+    def __init__(self, val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+
+class Solution:
+    def delNode(self, root, x):
+        #code here 
+        if root is None:
+            return None
+            
+        if x<root.data:
+            root.left = self.delNode(root.left, x)
+        
+        elif x>root.data:
+            root.right = self.delNode(root.right, x)
+            
+        else:
+            if root.left is None and root.right is None:
+                return None
+            
+            if root.left is None:
+                return root.right
+            if root.right is None:
+                return root.left
+                
+                
+            succesor = self.findMin(root.right)
+            root.data = succesor.data
+            root.right = self.delNode(root.right, succesor.data)
+            
+        return root
+
+    def findMin(self, root):
+        while root.left:
+            root = root.left
+        return root    
+                
+                
