@@ -1,0 +1,24 @@
+from collections import deque
+
+class Solution:
+    def firstNegInt(self, arr, k):
+
+        q = deque()
+        result = []
+
+        for i in range(len(arr)):
+
+            if arr[i] < 0:
+                q.append(arr[i])
+
+            if i >= k-1:
+
+                if q:
+                    result.append(q[0])
+                else:
+                    result.append(0)
+
+                if q and arr[i-k+1] == q[0]:
+                    q.popleft()
+
+        return result

@@ -1,0 +1,29 @@
+class Solution:
+    def threeSumClosest(self, arr, target):
+
+        arr.sort()
+        n = len(arr)
+
+        closest = arr[0] + arr[1] + arr[2]
+
+        for i in range(n-2):
+
+            j = i + 1
+            k = n - 1
+
+            while j < k:
+
+                s = arr[i] + arr[j] + arr[k]
+
+                if abs(s-target) < abs(closest-target) or \
+                   (abs(s-target) == abs(closest-target) and s > closest):
+                    closest = s
+
+                if s < target:
+                    j += 1
+                elif s > target:
+                    k -= 1
+                else:
+                    return target
+
+        return closest

@@ -1,0 +1,44 @@
+class Solution:
+    def fourSum(self, arr, target):
+
+        arr.sort()
+        res = []
+        n = len(arr)
+
+        for a in range(n-3):
+
+            if a > 0 and arr[a] == arr[a-1]:
+                continue
+
+            for b in range(a+1, n-2):
+
+                if b > a+1 and arr[b] == arr[b-1]:
+                    continue
+
+                c = b + 1
+                d = n - 1
+
+                while c < d:
+
+                    s = arr[a] + arr[b] + arr[c] + arr[d]
+
+                    if s == target:
+
+                        res.append([arr[a], arr[b], arr[c], arr[d]])
+
+                        c += 1
+                        d -= 1
+
+                        while c < d and arr[c] == arr[c-1]:
+                            c += 1
+
+                        while c < d and arr[d] == arr[d+1]:
+                            d -= 1
+
+                    elif s < target:
+                        c += 1
+
+                    else:
+                        d -= 1
+
+        return res
